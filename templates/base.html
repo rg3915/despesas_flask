@@ -2,7 +2,17 @@
 <html>
 <body>
 	{% block menu %}
+	{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			<ul class=flashes>
+				{% for message in messages %}
+					<li>{{ message }}</li>
+				{% endfor %}
+			</ul>
+		{% endif %}
+	{% endwith %}
 	<ul>
+		<li><a href="{{ url_for('register') }}">Cadastre-se</a></li>
 		<li>Renda</li>
 		<li>Gasto</li>
 		<li>Extrato</li>

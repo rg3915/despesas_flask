@@ -9,6 +9,7 @@ App feito com [Flask][0].
 	$ cd despesas_flask
 	$ source bin/activate
 	$ pip install -r requirements.txt
+	$ mkdir -p data/users
 	$ python tests.py
 	$ python despesas.py
 

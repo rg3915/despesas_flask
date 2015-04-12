@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <body>
+	{% block menu %}
 	<ul>
 		<li>Renda</li>
 		<li>Gasto</li>
@@ -13,8 +14,11 @@
 			</ul>
 		</li>
 	</ul>
+	{% endblock menu %}
 
-	<h1>Bem-vindo ao Despesas</h1>
+	{% block content %}
+		Template base
+	{% endblock content %}
 
 	<footer>
 		<p>Copyright 2015 - Régis da Silva</p>

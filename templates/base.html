@@ -12,7 +12,6 @@
 		{% endif %}
 	{% endwith %}
 	<ul>
-		<li><a href="{{ url_for('register') }}">Cadastre-se</a></li>
 		<li>Renda</li>
 		<li>Gasto</li>
 		<li>Extrato</li>
@@ -23,8 +22,14 @@
 				<li>Pessoa</li>
 			</ul>
 		</li>
+		<li><a href="{{ url_for('register') }}">Cadastre-se</a></li>
+		<li><a href="{{ url_for('login') }}">Login</a></li>
+		<li><a href="{{ url_for('logout') }}">Sair</a></li>
 	</ul>
 	{% endblock menu %}
+        {% if current_user.is_authenticated() %}
+            <span class="userid">Logado como <strong> {{current_user.id }}</strong></span>
+        {% endif %}
 
 	{% block content %}
 		Template base

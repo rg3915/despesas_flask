@@ -9,6 +9,7 @@ App feito com [Flask][0].
 	$ cd despesas_flask
 	$ source bin/activate
 	$ pip install -r requirements.txt
+	$ python tests.py
 	$ python despesas.py
 
 http://127.0.0.1:5000/

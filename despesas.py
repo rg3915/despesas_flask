@@ -6,9 +6,13 @@ import sys
 
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask.ext.login import LoginManager, UserMixin, login_user, login_required, logout_user
+from flask.ext.sqlalchemy import SQLAlchemy
 from werkzeug import secure_filename
 
 app = Flask(__name__)
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data/data.db'
+db = SQLAlchemy(app)
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -26,6 +30,21 @@ app.secret_key = "secretkey"
 @app.route("/")
 def index():
     return render_template("index.html")
+
+
+@app.route("/person", methods=["GET", "POST"])
+def person_add():
+    form = persons.PersonForm()
+    if form.validate_on_submit():
+        p = persons.PersonModel(
+            form.first_name.data, form.last_name.data or "", form.email.data, form.site.data or "", form.job.data or "")
+        db.session.add(p)
+        db.session.commit()
+        flash("Dados gravados com sucesso.")
+        return redirect(url_for("person_add"))
+    return render_template("person_add.html", form=form)
+
+    # TODO: INCOMPLETE
 
 
 @app.route("/register", methods=["GET", "POST"])

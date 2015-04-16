@@ -26,8 +26,8 @@ class PersonModel(db.Model):
     first_name = db.Column(db.String(50))
     last_name = db.Column(db.String(50))
     email = db.Column(db.String(50), unique=True)
-    site = db.Column(db.String(50), unique=True)
-    job = db.Column(db.String(50), unique=True)
+    site = db.Column(db.String(50))
+    job = db.Column(db.String(50))
     created_at = db.Column(db.DateTime)
 
     def __init__(self, first_name, last_name, email, site, job, created_at=None):
@@ -52,3 +52,11 @@ class Expense(db.Model):
     bank_id = db.Column(db.Integer, db.ForeignKey('bank.id'))
     paid = db.Column(db.Boolean, default=False)
     person_id = db.Column(db.Integer, db.ForeignKey('person.id'))
+
+
+class PersonForm(Form):
+    first_name = StringField("Nome")
+    last_name = StringField("Sobrenome")
+    email = StringField("E-mail", validators=[DataRequired()])
+    site = StringField("Site")
+    job = StringField("Profissão")

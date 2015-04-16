@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<h1>Cadastre-se</h1>
+
+	<form action="{{ url_for('person_add') }}" method="post" enctype="multipart/form-data">
+		<table>
+			{% for field in form %}
+				<tr>
+					<td>{{ field.label }}</td>
+					<td>{{ field }}</td>
+				</tr>
+			{% endfor %}
+		</table>
+		<input type="submit" value="Salvar" />
+	</form>
+{% endblock content %}

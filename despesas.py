@@ -9,6 +9,8 @@ from flask.ext.login import LoginManager, UserMixin, login_user, login_required,
 from flask.ext.sqlalchemy import SQLAlchemy
 from werkzeug import secure_filename
 
+import models
+
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data/data.db'
@@ -34,9 +36,9 @@ def index():
 
 @app.route("/person", methods=["GET", "POST"])
 def person_add():
-    form = persons.PersonForm()
+    form = models.PersonForm()
     if form.validate_on_submit():
-        p = persons.PersonModel(
+        p = models.PersonModel(
             form.first_name.data, form.last_name.data or "", form.email.data, form.site.data or "", form.job.data or "")
         db.session.add(p)
         db.session.commit()
